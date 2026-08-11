@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casita de la Colina — Pinamar</title>
+<meta name="description" content="Casita de la Colina, Pinamar. Alquiler temporario para 4/5 huéspedes, a pasos del pinar. Reservá por WhatsApp o Airbnb.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pino: #2F3B2A;
+    --pino-dark: #1D251A;
+    --arena: #EFE9DB;
+    --crema: #F7F4EC;
+    --terracota: #A63D2F;
+    --ceramica: #2C5C74;
+    --tinta: #21201C;
+    --tinta-suave: #55534B;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--crema);
+    color:var(--tinta);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3, .display{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  img{display:block; max-width:100%;}
+
+  .sendero{
+    position:fixed;
+    top:0; left:0;
+    width:5px; height:100%;
+    background:var(--terracota);
+    z-index:50;
+    transform-origin:top;
+    transform:scaleY(0);
+  }
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:40;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 28px;
+    background:rgba(247,244,236,0.9);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(33,32,28,0.08);
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:1.05rem;
+    letter-spacing:0.01em;
+  }
+  .brand span{color:var(--terracota);}
+  nav .links{display:flex; gap:24px; font-size:0.85rem; letter-spacing:0.02em;}
+  nav .links a{text-decoration:none; color:var(--tinta-suave); transition:color .2s;}
+  nav .links a:hover{color:var(--terracota);}
+  nav .cta{
+    background:var(--pino); color:var(--crema);
+    padding:9px 18px; border-radius:2px;
+    font-size:0.82rem; text-decoration:none;
+    letter-spacing:0.02em;
+  }
+  @media (max-width:720px){ nav .links{display:none;} }
+
+  /* HERO */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex; align-items:flex-end;
+    overflow:hidden;
+  }
+  .hero img{
+    position:absolute; inset:0;
+    width:100%; height:100%; object-fit:cover;
+    filter:saturate(0.95);
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(29,37,26,0.15) 0%, rgba(29,37,26,0.05) 40%, rgba(29,37,26,0.75) 100%);
+  }
+  .hero-content{
+    position:relative; z-index:2;
+    padding:64px 28px 56px;
+    color:var(--crema);
+    max-width:900px;
+  }
+  .eyebrow{
+    font-size:0.78rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--arena);
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:"";
+    display:inline-block;
+    width:26px; height:2px;
+    background:var(--terracota);
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 6vw, 4.6rem);
+    line-height:1.03;
+    max-width:11ch;
+  }
+  .hero p.lead{
+    margin-top:20px;
+    font-size:1.05rem;
+    max-width:46ch;
+    color:var(--arena);
+  }
+  .hero-actions{
+    margin-top:32px;
+    display:flex; gap:14px; flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 24px;
+    border-radius:2px;
+    text-decoration:none;
+    font-size:0.88rem;
+    letter-spacing:0.02em;
+    font-weight:500;
+    border:1px solid transparent;
+    transition:transform .15s ease, background .2s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--terracota); color:var(--crema);}
+  .btn-primary:hover{background:#8f3427;}
+  .btn-outline{border-color:rgba(247,244,236,0.6); color:var(--crema);}
+  .btn-outline:hover{background:rgba(247,244,236,0.12);}
+
+  /* SECTION helpers */
+  section{padding:96px 28px;}
+  .section-inner{max-width:1080px; margin:0 auto;}
+  .section-tag{
+    font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--terracota); margin-bottom:14px; font-weight:600;
+  }
+  .section-title{
+    font-size:clamp(1.8rem, 3.4vw, 2.6rem);
+    max-width:16ch;
+    margin-bottom:18px;
+  }
+  .section-lead{
+    color:var(--tinta-suave); max-width:60ch; font-size:1.02rem;
+  }
+
+  /* INTRO */
+  .intro{background:var(--crema);}
+  .intro-grid{
+    display:grid; grid-template-columns: 1.1fr 0.9fr; gap:56px; align-items:start; margin-top:48px;
+  }
+  .intro-stats{display:flex; flex-direction:column; gap:28px;}
+  .stat{border-left:2px solid var(--terracota); padding-left:18px;}
+  .stat .num{font-family:'Fraunces',serif; font-size:2.1rem; font-weight:500;}
+  .stat .label{font-size:0.85rem; color:var(--tinta-suave); margin-top:2px;}
+  @media (max-width:800px){ .intro-grid{grid-template-columns:1fr;} }
+
+  /* GALLERY */
+  .galeria{background:var(--pino); color:var(--arena);}
+  .galeria .section-tag{color:#C98A79;}
+  .galeria .section-lead{color:#CBD1C4;}
+  .gallery-grid{
+    margin-top:48px;
+    display:grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows:180px;
+    gap:12px;
+  }
+  .gallery-grid figure{
+    overflow:hidden; position:relative; border-radius:2px;
+    grid-column: span 3;
+    grid-row: span 2;
+  }
+  .gallery-grid figure.small{grid-column:span 2; grid-row:span 1;}
+  .gallery-grid figure.wide{grid-column:span 4; grid-row:span 2;}
+  .gallery-grid figure img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
+  .gallery-grid figure:hover img{transform:scale(1.05);}
+  .gallery-grid figcaption{
+    position:absolute; bottom:0; left:0; right:0;
+    padding:12px 14px;
+    font-size:0.78rem; letter-spacing:0.02em;
+    background:linear-gradient(0deg, rgba(0,0,0,0.55), transparent);
+    color:#fff;
+  }
+  @media (max-width:800px){
+    .gallery-grid{grid-template-columns: repeat(2,1fr); grid-auto-rows:160px;}
+    .gallery-grid figure, .gallery-grid figure.small, .gallery-grid figure.wide{grid-column:span 1; grid-row:span 1;}
+  }
+
+  /* AMENITIES */
+  .comodidades{background:var(--arena);}
+  .amenity-list{
+    margin-top:48px;
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:1px;
+    background:rgba(33,32,28,0.12);
+    border:1px solid rgba(33,32,28,0.12);
+  }
+  .amenity{
+    background:var(--arena);
+    padding:30px 26px;
+  }
+  .amenity .icon{
+    width:34px; height:34px;
+    margin-bottom:18px;
+    color:var(--ceramica);
+  }
+  .amenity h3{font-size:1.02rem; font-weight:500; margin-bottom:8px;}
+  .amenity p{font-size:0.88rem; color:var(--tinta-suave);}
+  @media (max-width:800px){ .amenity-list{grid-template-columns:1fr 1fr;} }
+  @media (max-width:520px){ .amenity-list{grid-template-columns:1fr;} }
+
+  /* COCINA equipada */
+  .equipada{background:var(--crema);}
+  .equip-grid{
+    margin-top:48px;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:14px;
+  }
+  .equip-grid figure{overflow:hidden; border-radius:2px; aspect-ratio:1/1;}
+  .equip-grid img{width:100%; height:100%; object-fit:cover;}
+  @media (max-width:800px){ .equip-grid{grid-template-columns:repeat(2,1fr);} }
+
+  /* UBICACION */
+  .ubicacion{background:var(--ceramica); color:var(--crema);}
+  .ubicacion .section-tag{color:#9FC6D8;}
+  .ubicacion .section-lead{color:#DCE8ED;}
+  .ubicacion-content{margin-top:40px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;}
+  .address-pill{
+    border:1px solid rgba(247,244,236,0.4);
+    padding:16px 22px;
+    font-family:'Fraunces', serif;
+    font-size:1.2rem;
+  }
+
+  /* RESERVA */
+  .reserva{background:var(--pino-dark); color:var(--arena); text-align:center;}
+  .reserva .section-title{margin:0 auto 16px; color:var(--crema);}
+  .reserva .section-lead{margin:0 auto 8px; color:#C9CEC2;}
+  .price{
+    font-family:'Fraunces', serif;
+    font-size:clamp(2.6rem, 6vw, 4rem);
+    color:var(--crema);
+    margin:28px 0 6px;
+  }
+  .price small{font-size:1rem; color:#B6BCAB; font-family:'Work Sans', sans-serif;}
+  .reserva-actions{
+    margin-top:34px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;
+  }
+  .btn-lg{padding:17px 32px; font-size:0.95rem;}
+
+  footer{
+    padding:32px 28px;
+    text-align:center;
+    font-size:0.78rem;
+    color:var(--tinta-suave);
+    background:var(--arena);
+  }
+</style>
+</head>
+<body>
+
+<div class="sendero" id="sendero"></div>
+
+<nav>
+  <div class="brand">Casita de la <span>Colina</span></div>
+  <div class="links">
+    <a href="#casa">La casa</a>
+    <a href="#galeria">Galería</a>
+    <a href="#comodidades">Comodidades</a>
+    <a href="#ubicacion">Ubicación</a>
+  </div>
+  <a class="cta" href="#reserva">Reservar</a>
+</nav>
+
+<header class="hero">
+  <img src="images/living_frontal.jpg" alt="Living de Casita de la Colina con vista al pinar de Pinamar">
+  <div class="hero-content">
+    <div class="eyebrow">Pinamar · Buenos Aires</div>
+    <h1>Casita de la Colina</h1>
+    <p class="lead">Un departamento entre pinos a pocas cuadras del mar, pensado para desconectar. Cocina completa, living luminoso y el verde de Pinamar de fondo.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://wa.me/541134621302?text=Hola!%20Quiero%20consultar%20por%20Casita%20de%20la%20Colina%20en%20Pinamar" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+      <a class="btn btn-outline" href="https://airbnb.com.ar/h/casita-de-la-colina" target="_blank" rel="noopener">Ver en Airbnb</a>
+    </div>
+  </div>
+</header>
+
+<section class="intro" id="casa">
+  <div class="section-inner">
+    <div class="section-tag">La casa</div>
+    <h2 class="section-title">Espacio simple, cómodo y con todo lo necesario</h2>
+    <div class="intro-grid">
+      <p class="section-lead">
+        Un ambiente integrado de living-comedor con salida a un pasillo verde entre pinos, dormitorio con cama doble y placard, y baño completo. La cocina está totalmente equipada: bachas, cacerolas, sartenes, plancha de hierro, vajilla y cubiertos de acero inoxidable, microondas y botiquín de primeros auxilios. Ideal para una estadía sin sorpresas.
+      </p>
+      <div class="intro-stats">
+        <div class="stat"><div class="num">4 + 1</div><div class="label">Huéspedes — capacidad para 4, con opción de un quinto llevando colchón propio</div></div>
+        <div class="stat"><div class="num">Wifi</div><div class="label">Internet de alta velocidad en toda la casa</div></div>
+        <div class="stat"><div class="num">1</div><div class="label">Cochera propia al aire libre</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="galeria" id="galeria">
+  <div class="section-inner">
+    <div class="section-tag">Galería</div>
+    <h2 class="section-title">Un vistazo por dentro</h2>
+    <p class="section-lead">Fotos reales de la casa, tal como la vas a encontrar.</p>
+    <div class="gallery-grid">
+      <figure class="wide"><img src="images/living_frontal.jpg" alt="Living comedor con vista al pinar"><figcaption>Living — vista al pinar</figcaption></figure>
+      <figure><img src="images/dormitorio.jpg" alt="Dormitorio con cama doble"><figcaption>Dormitorio principal</figcaption></figure>
+      <figure class="small"><img src="images/living_mesa.jpg" alt="Mesa del comedor"><figcaption>Comedor</figcaption></figure>
+      <figure class="small"><img src="images/dormitorio_2.jpg" alt="Placard del dormitorio"><figcaption>Placard y guardado</figcaption></figure>
+      <figure><img src="images/exterior.jpg" alt="Camino de acceso entre pinos"><figcaption>Acceso — pasillo entre pinos</figcaption></figure>
+      <figure class="small"><img src="images/living_esquina.jpg" alt="Rincón del living"><figcaption>Living</figcaption></figure>
+      <figure class="small"><img src="images/bano.jpg" alt="Baño completo"><figcaption>Baño completo</figcaption></figure>
+      <figure><img src="images/exterior_2.jpg" alt="Fondo con parque y parrilla"><figcaption>Fondo con parrilla</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="comodidades" id="comodidades">
+  <div class="section-inner">
+    <div class="section-tag">Comodidades</div>
+    <h2 class="section-title">Todo listo para instalarse</h2>
+    <div class="amenity-list">
+      <div class="amenity">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 12.5a9 9 0 0114 0M8 15.5a5 5 0 018 0M11 18.5h2"/></svg>
+        <h3>Wifi de alta velocidad</h3>
+        <p>Conexión estable en todos los ambientes, para trabajar o ver series sin cortes.</p>
+      </div>
+      <div class="amenity">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 17V9a2 2 0 012-2h12a2 2 0 012 2v8M4 17h16M6 17v2M18 17v2"/></svg>
+        <h3>Cochera propia</h3>
+        <p>Estacionamiento al aire libre dentro del predio, sin costo adicional.</p>
+      </div>
+      <div class="amenity">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <h3>Parrilla</h3>
+        <p>Parrilla de material en el fondo, bajo los pinos, lista para un asado.</p>
+      </div>
+      <div class="amenity">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 4h16v4H4zM6 8v12M18 8v12M6 20h12"/></svg>
+        <h3>Cocina equipada</h3>
+        <p>Vajilla y cubiertos de acero inoxidable, cacerolas, sartenes, plancha y microondas.</p>
+      </div>
+      <div class="amenity">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-4.5-9-9.5C1.5 7 4 4 7 4c2 0 4 1.5 5 3 1-1.5 3-3 5-3 3 0 5.5 3 4 7.5-2 5-9 9.5-9 9.5z"/></svg>
+        <h3>Botiquín</h3>
+        <p>Botiquín de primeros auxilios disponible en la casa por cualquier imprevisto.</p>
+      </div>
+      <div class="amenity">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 20l3-14h12l3 14M8 20v-6h8v6"/></svg>
+        <h3>Ropa de cama</h3>
+        <p>Cama doble con ropa de cama incluida; lugar para un quinto huésped con colchón propio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="equipada">
+  <div class="section-inner">
+    <div class="section-tag">Cocina</div>
+    <h2 class="section-title">Lista para cocinar de entrada</h2>
+    <p class="section-lead">Ollas, sartén, plancha de hierro, vajilla, cubertería y todo lo que hace falta para no tener que traer nada.</p>
+    <div class="equip-grid">
+      <figure><img src="images/cocina.jpg" alt="Cocina con anafe a gas"></figure>
+      <figure><img src="images/cacerolas.jpg" alt="Juego de cacerolas de acero inoxidable"></figure>
+      <figure><img src="images/vajilla.jpg" alt="Vajilla y vasos"></figure>
+      <figure><img src="images/cubiertos_1.jpg" alt="Cubiertos y utensilios"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="ubicacion" id="ubicacion">
+  <div class="section-inner">
+    <div class="section-tag">Ubicación</div>
+    <h2 class="section-title">Martín Pescador 489, Pinamar</h2>
+    <p class="section-lead">Una calle arbolada, típica del pinar de Pinamar, a un paseo corto de la playa y del centro.</p>
+    <div class="ubicacion-content">
+      <div class="address-pill">Martín Pescador 489 · Pinamar, Buenos Aires</div>
+    </div>
+  </div>
+</section>
+
+<section class="reserva" id="reserva">
+  <div class="section-inner">
+    <div class="section-tag">Reservar</div>
+    <h2 class="section-title">Consultá disponibilidad</h2>
+    <p class="section-lead">Escribinos por WhatsApp o reservá directo desde Airbnb.</p>
+    <div class="price">USD 110 <small>/ noche · temporada alta</small></div>
+    <div class="reserva-actions">
+      <a class="btn btn-primary btn-lg" href="https://wa.me/541134621302?text=Hola!%20Quiero%20consultar%20por%20Casita%20de%20la%20Colina%20en%20Pinamar" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+      <a class="btn btn-outline btn-lg" href="https://airbnb.com.ar/h/casita-de-la-colina" target="_blank" rel="noopener">Reservar en Airbnb</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Casita de la Colina — Martín Pescador 489, Pinamar, Buenos Aires, Argentina.
+</footer>
+
+<script>
+  const bar = document.getElementById('sendero');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+    bar.style.transform = `scaleY(${scrolled})`;
+  });
+</script>
+
+</body>
+</html>
