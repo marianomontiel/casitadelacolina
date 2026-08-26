@@ -80,8 +80,7 @@ button {
   height: 32px;
   border-radius: 50%;
   background: var(--forest);
-  color: #fff;
-  font-size: 18px;
+  overflow: hidden;
 }
 
 .desktop-nav {
