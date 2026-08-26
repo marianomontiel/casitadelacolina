@@ -472,7 +472,7 @@ h3 {
 }
 
 .price span {
-  font-size: 14px;
+  font-size: 1.8rem;
   font-weight: 800;
 }
 
@@ -481,11 +481,6 @@ h3 {
   font-size: 76px;
   font-weight: 500;
   line-height: 1;
-}
-
-.price-text {
-  font-size: 1.8rem;
-  line-height: 1.1;
 }
 
 .price small {
