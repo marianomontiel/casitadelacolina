@@ -1,6 +1,6 @@
 // Reemplazá este valor por el número de WhatsApp en formato internacional, sin + ni espacios.
 // Ejemplo Argentina: 54911XXXXXXXX
-const WHATSAPP_NUMBER = "54911XXXXXXXX";
+const WHATSAPP_NUMBER = "5491134621302";
 const WHATSAPP_MESSAGE = "Hola, vi la página de Casita de la Colina y quería consultar disponibilidad.";
 
 document.querySelectorAll('.whatsapp-link').forEach((link) => {
