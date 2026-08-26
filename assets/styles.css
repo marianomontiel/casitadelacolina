@@ -308,7 +308,7 @@ h3 {
 }
 
 .feature-card {
-  min-height: 310px;
+  /*min-height: 310px;*/
   padding: 25px clamp(28px, 4vw, 25px);
   background: var(--cream);
 }
