@@ -483,6 +483,11 @@ h3 {
   line-height: 1;
 }
 
+.price-text {
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
 .price small {
   color: var(--muted);
 }
