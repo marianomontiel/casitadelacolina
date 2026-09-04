@@ -560,6 +560,72 @@ h3 {
   object-fit: cover;
 }
 
+
+/* FAQ */
+
+.faq {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(42px, 8vw, 110px);
+  align-items: start;
+  background: #fff;
+}
+
+.faq-heading {
+  position: sticky;
+  top: 112px;
+  margin-bottom: 0;
+}
+
+.faq-heading h2 {
+  max-width: 560px;
+}
+
+.faq-list {
+  border-top: 1px solid var(--line);
+}
+
+.faq-list details {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-list summary {
+  position: relative;
+  padding: 26px 48px 26px 0;
+  list-style: none;
+  cursor: pointer;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(21px, 2.2vw, 27px);
+  line-height: 1.2;
+}
+
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-list summary::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  transform: translateY(-50%);
+  color: var(--forest);
+  font-family: Inter, ui-sans-serif, sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.faq-list details[open] summary::after {
+  content: "−";
+}
+
+.faq-list details p {
+  max-width: 720px;
+  margin: -4px 48px 26px 0;
+  color: var(--muted);
+  font-size: 17px;
+}
+
 /* Contact */
 
 .contact {
@@ -666,8 +732,13 @@ footer {
 
   .intro,
   .stay-details,
-  .location {
+  .location,
+  .faq {
     grid-template-columns: 1fr;
+  }
+
+  .faq-heading {
+    position: static;
   }
 
   .feature-grid {
